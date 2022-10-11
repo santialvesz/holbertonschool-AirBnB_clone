@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import cmd
 
 class HBNBCommand(cmd.Cmd):
@@ -7,13 +9,9 @@ def do_quit(self, line):
     """Method to exit the HBNB console"""
     exit()
 
-def help_quit():
-    """"""
-    print()
-
 def do_EOF(self, line):
     """"""
-    return True
+    exit()
 
 def emptyline(self):
     pass
