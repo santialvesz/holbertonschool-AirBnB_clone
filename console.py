@@ -1,8 +1,10 @@
 #!/usr/bin/python3
+"""Console"""
 
 import cmd
 
 class HBNBCommand(cmd.Cmd):
+    """Command Interpreter"""
     prompt = '(hbnb)'
 
     def do_quit(self, args):
