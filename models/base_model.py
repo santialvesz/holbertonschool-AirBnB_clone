@@ -7,7 +7,14 @@ import models
 
 
 class BaseModel():
+    """
+    Defines all common attributes/methods for other classes
+    """
     def __init__(self, *args, **kwargs):
+         """
+        This function is the constructor for the BaseModel class. It creates a new instance of the
+        BaseModel class and assigns it an id, created_at, and updated_at
+        """
         if len(kwargs) > 0:
             fmt = '%Y-%m-%dT%H:%M:%S.%f'
             for i, j in kwargs.items():
@@ -26,4 +33,13 @@ class BaseModel():
             
 
     def __str__(self):
+         """
+        The function returns a string representation of the object
+        """
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+
+    def save(self):
+        pass
+
+    def to_dict(self):
+        pass
