@@ -37,10 +37,11 @@ class BaseModel():
          """
         The function returns a string representation of the object
         """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
-        pass
+        self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         pass
