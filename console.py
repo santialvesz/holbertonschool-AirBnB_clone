@@ -69,7 +69,23 @@ def do_show(self, args):
                 return
         print("** class doesn't exist **")
 
-        
+def do_destroy(self, args):
+        """Deletes an instance based on the class name and id"""
+        my_args = args.split()
+        if len(my_args) == 2:
+            print("** class name missing **")
+            return
+        my_dict = storage.all()
+        for key, value in my_dict.items():
+            if my_args[0] == value.__class__.__name__:
+                if len(my_args) == 1:
+                    print("** instance id missing **")
+                    return
+
+        for k in dictionary.keys():
+        print("** class doesn't exist **")
+
+
 
 
 
