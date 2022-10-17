@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Console"""
+"""is the console of the project"""
+
 
 import cmd
 import models
@@ -12,23 +13,26 @@ from models.place import Place
 from models.review import Review
 from models.engine.file_storage import FileStorage
 
+
 class HBNBCommand(cmd.Cmd):
-    """Command Interpreter"""
-    prompt = '(hbnb)'
+    """Define a console Class"""
+
+    prompt = "(hbnb) "
+    _classes = ["BaseModel", "User", "State", "City",
+                "Amenity", "Place", "Review"]
 
     def do_quit(self, args):
-        """Method to exit the HBNB console"""
+        """funtion quit"""
         exit()
 
-    def do_EOF(self, line):
-        """"""
+    def do_EOF(self, l):
+        """function EOF"""
+        print("")
         exit()
 
     def emptyline(self):
+        """Function emptyline"""
         pass
-
-    def help(self):
-        print("Quit command to exit the program")
 
     def do_create(self, line):
         if not line:
@@ -69,6 +73,26 @@ class HBNBCommand(cmd.Cmd):
                 print(value)
                 return
         print("** no instance found **")
+
+    def do_destroy(self, line):
+        if line == "" or line is None:
+            print("** class name missing **")
+        else:
+            args = line.split(' ')
+            if args[0] not in HBNBCommand._classes:
+                print("** class doesn't exist **")
+            elif len(args) < 2:
+                print("** instance id missing **")
+            else:
+                k = args[0] + "." + args[1]
+                new = models.storage.all()
+
+                if k not in new:
+                        print("** no instance found **")
+                else:
+                    del new[k]
+                    models.storage.save()
+
 
 
 if __name__ == '__main__':
