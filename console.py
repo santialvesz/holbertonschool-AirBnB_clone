@@ -1,40 +1,43 @@
 #!/usr/bin/python3
-"""is the console of the project"""
+"""Console 0.0.1"""
 
 
 import cmd
-import models
-from models.base_model import BaseModel
+from models import storage
 from models.user import User
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
+
+dictionary = {"Amenity": Amenity,
+              "BaseModel": BaseModel,
+              "City": City,
+              "Place": Place,
+              "Review": Review,
+              "State": State,
+              "User": User}
 
 
 class HBNBCommand(cmd.Cmd):
-    """Define a console Class"""
-
-    prompt = "(hbnb) "
-    _classes = ["BaseModel", "User", "State", "City",
-                "Amenity", "Place", "Review"]
-
-    def do_quit(self, args):
-        """funtion quit"""
-        exit()
-
-    def do_EOF(self, l):
-        """function EOF"""
-        print("")
-        exit()
+    """HBNB"""
+    prompt = "(hbnb)"
 
     def emptyline(self):
-        """Function emptyline"""
+        """Print Anything"""
         pass
 
-def do_create(self, arg):
+    def do_EOF(self, args):
+        """End of File"""
+        return True
+
+    def do_quit(self, args):
+        """Quit"""
+        return True
+
+    def do_create(self, arg):
         """Create a new instance"""
         my_args = arg.split()
         if len(my_args) == 0:
@@ -46,50 +49,3 @@ def do_create(self, arg):
             print(new_ins.id)
         except Exception:
             print("** class doesn't exist **")
-
-def do_show(self, args):
-        """Prints the string representation of
-        an instance based on the class name and id"""
-        my_args = args.split()
-        if len(my_args) == 0:
-            print("** class name missing **")
-            return
-        my_dict = storage.all()
-        for key, value in my_dict.items():
-            if my_args[0] == value.__class__.__name__:
-                if len(my_args) == 1:
-                    print("** instance id missing **")
-                    return
-                if my_args[1] == value.id:
-                    print(value)
-                    return
-        for k in dictionary.keys():
-            if my_args[0] == k:
-                print("** no instance found **")
-                return
-        print("** class doesn't exist **")
-
-def do_destroy(self, args):
-        """Deletes an instance based on the class name and id"""
-        my_args = args.split()
-        if len(my_args) == 2:
-            print("** class name missing **")
-            return
-        my_dict = storage.all()
-        for key, value in my_dict.items():
-            if my_args[0] == value.__class__.__name__:
-                if len(my_args) == 1:
-                    print("** instance id missing **")
-                    return
-
-        for k in dictionary.keys():
-        print("** class doesn't exist **")
-
-
-
-
-
-
-
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
