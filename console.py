@@ -114,6 +114,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print(my_list)
     def do_update(self, args):
+
         my_args = args.split()
         if len(my_args) == 0:
             print("** class name missing **")
@@ -144,3 +145,4 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
+    
